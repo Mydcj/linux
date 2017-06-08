@@ -1606,8 +1606,7 @@ static int ad9467_probe(struct spi_device *spi)
 	case CHIPID_AD9250:
 		ret = ad9250_setup(spi, 2, 2);
 		if (ret) {
-			dev_err(&spi->dev, "Failed to initialize\n");
-			ret = -EIO;
+			dev_err(&spi->dev, "Failed to initialize: %d\n", ret);
 			goto out;
 		}
 
@@ -1619,8 +1618,7 @@ static int ad9467_probe(struct spi_device *spi)
 	case CHIPID_AD9683:
 		ret = ad9250_setup(spi, 1, 1);
 		if (ret) {
-			dev_err(&spi->dev, "Failed to initialize\n");
-			ret = -EIO;
+			dev_err(&spi->dev, "Failed to initialize: %d\n", ret);
 			goto out;
 		}
 		conv->chip_info = &axiadc_chip_info_tbl[ID_AD9683];
@@ -1631,8 +1629,7 @@ static int ad9467_probe(struct spi_device *spi)
 	case CHIPID_AD9234:
 		ret = ad9680_setup(spi, 1, 1, true);
 		if (ret) {
-			dev_err(&spi->dev, "Failed to initialize\n");
-			ret = -EIO;
+			dev_err(&spi->dev, "Failed to initialize: %d\n", ret);
 			goto out;
 		}
 		conv->chip_info = &axiadc_chip_info_tbl[ID_AD9234];
@@ -1648,8 +1645,7 @@ static int ad9467_probe(struct spi_device *spi)
 #endif
 		ret = ad9680_setup(spi, 1, 1, false);
 		if (ret) {
-			dev_err(&spi->dev, "Failed to initialize\n");
-			ret = -EIO;
+			dev_err(&spi->dev, "Failed to initialize: %d\n", ret);
 			goto out;
 		}
 		conv->chip_info = &axiadc_chip_info_tbl[master_slave_2x_quirk ?
@@ -1661,8 +1657,7 @@ static int ad9467_probe(struct spi_device *spi)
 	case CHIPID_AD9625:
 		ret = ad9625_setup(spi);
 		if (ret) {
-			dev_err(&spi->dev, "Failed to initialize\n");
-			ret = -EIO;
+			dev_err(&spi->dev, "Failed to initialize: %d\n", ret);
 			goto out;
 		}
 
@@ -1698,8 +1693,7 @@ static int ad9467_probe(struct spi_device *spi)
 	case CHIPID_AD9684:
 		ret = ad9684_setup(spi);
 		if (ret) {
-			dev_err(&spi->dev, "Failed to initialize\n");
-			ret = -EIO;
+			dev_err(&spi->dev, "Failed to initialize: %d\n", ret);
 			goto out;
 		}
 		conv->chip_info = &axiadc_chip_info_tbl[ID_AD9684];
